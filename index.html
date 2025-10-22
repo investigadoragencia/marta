@@ -1,68 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Baixar App Investigador</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login - Aplicativo Investigador</title>
   <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(135deg, #000, #222);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 40px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    }
-    img {
-      width: 100px;
-      height: 100px;
-      border-radius: 20%;
-      margin-bottom: 20px;
-      object-fit: cover;
-    }
-    h1 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-    p {
-      color: #aaa;
-      margin-bottom: 30px;
-    }
-    a {
-      background: #ffcc00;
-      color: #000;
-      text-decoration: none;
-      padding: 15px 25px;
-      border-radius: 30px;
-      font-weight: bold;
-      display: inline-block;
-      transition: 0.2s;
-    }
-    a:hover {
-      background: #fff;
-      transform: scale(1.05);
-    }
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#0ea5a4;--muted:#94a3b8}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#071022 0%, #071733 100%);color:#e6eef8;min-height:100vh;display:flex;align-items:center;justify-content:center}
+    .card{width:360px;padding:28px;border-radius:12px;background:radial-gradient(circle at 10% 10%, rgba(14,165,164,0.06), transparent 20%), var(--card);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    h1{margin:0 0 8px;font-size:20px}
+    p.lead{margin:0 0 20px;color:var(--muted);font-size:13px}
+    label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+    input[type="text"],input[type="password"]{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);color:inherit;font-size:14px}
+    .row{display:flex;gap:8px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:#021018;font-weight:600;cursor:pointer}
+    .secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .help{font-size:12px;color:var(--muted);margin-top:12px}
+    .msg{margin-top:12px;padding:10px;border-radius:8px;font-size:13px}
+    .msg.success{background:rgba(16,185,129,0.12);color:#7ef3c4}
+    .msg.error{background:rgba(239,68,68,0.08);color:#fda4af}
+    .hint{font-size:11px;color:#a5f3fc;margin-top:8px}
+    footer{margin-top:14px;font-size:11px;color:var(--muted);text-align:center}
+    @media (max-width:420px){.card{width:92vw;padding:18px}}
   </style>
 </head>
 <body>
-  <div class="card">
-    <img src="https://raw.githubusercontent.com/investigadoragencia/app-download/main/logo.jpeg" alt="Logo App Investigador" />
-    <h1>App Investigador</h1>
-    <p>Baixe agora o aplicativo oficial e descubra o que ninguém revela.</p>
-    <a href="https://raw.githubusercontent.com/investigadoragencia/app-download/main/appai.apk" download>📲 Baixar Agora</a>
-  </div>
+  <main class="card" role="main">
+    <h1>Área restrita</h1>
+    <p class="lead">Entre com seu usuário e senha para continuar.</p>
+
+    <form id="loginForm" autocomplete="off">
+      <div style="margin-bottom:12px">
+        <label for="username">Nome de usuário</label>
+        <input id="username" name="username" type="text" placeholder="usuário" required />
+      </div>
+      <div style="margin-bottom:6px">
+        <label for="password">Senha</label>
+        <input id="password" name="password" type="password" placeholder="senha" required />
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
+        <button type="submit" class="btn">Entrar</button>
+        <button type="button" id="fillBtn" class="btn secondary">Preencher</button>
+      </div>
+
+      <div id="message" aria-live="polite"></div>
+
+      <p class="help">Dica: este exemplo aceita <strong>usuário <code>marta</code></strong> e <strong>senha <code>2025</code></strong>.</p>
+      <p class="hint">(Este é um exemplo local; não use senhas reais aqui.)</p>
+    </form>
+
+    <footer>Aplicativo Investigador — versão local</footer>
+  </main>
+
+  <script>
+    // Credenciais esperadas
+    const VALID_USERNAME = 'marta';
+    const VALID_PASSWORD = '2025';
+
+    const form = document.getElementById('loginForm');
+    const msgEl = document.getElementById('message');
+    const fillBtn = document.getElementById('fillBtn');
+
+    function showMessage(text, type = 'error'){
+      msgEl.innerHTML = '';
+      const div = document.createElement('div');
+      div.className = 'msg ' + (type === 'success' ? 'success' : 'error');
+      div.textContent = text;
+      msgEl.appendChild(div);
+    }
+
+    // Preenche os campos com as credenciais solicitadas
+    fillBtn.addEventListener('click', ()=>{
+      document.getElementById('username').value = VALID_USERNAME;
+      document.getElementById('password').value = VALID_PASSWORD;
+      showMessage('Campos preenchidos com as credenciais solicitadas. Clique em Entrar.', 'success');
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value;
+
+      // Validação simples
+      if(user === VALID_USERNAME && pass === VALID_PASSWORD){
+        showMessage('Login bem‑sucedido. Redirecionando...', 'success');
+        // exemplo de ação: redirecionar para uma área protegida local
+        setTimeout(()=>{
+          // aqui poderia abrir outra página, por exemplo: window.location.href = 'dashboard.html';
+          alert('Login confirmado para "' + VALID_USERNAME + '" — este é um exemplo local.');
+        }, 700);
+      } else {
+        showMessage('Usuário ou senha inválidos. Tente novamente.');
+      }
+    });
+  </script>
 </body>
 </html>
-
