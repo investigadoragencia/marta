@@ -46,9 +46,7 @@
       </div>
 
       <div id="message" aria-live="polite"></div>
-
-      <p class="help"> <strong> <code></code></strong>  <strong> <code></code></strong>.</p>
-      <p class="hint"> </p>
+      <p class="hint">Exemplo de usuário: <code>marta</code> | senha: <code>2025</code></p>
     </form>
 
     <footer>Aplicativo Investigador</footer>
@@ -71,7 +69,7 @@
       msgEl.appendChild(div);
     }
 
-    // Preenche os campos com as credenciais solicitadas
+    // Preenche os campos com as credenciais
     fillBtn.addEventListener('click', ()=>{
       document.getElementById('username').value = VALID_USERNAME;
       document.getElementById('password').value = VALID_PASSWORD;
@@ -83,13 +81,11 @@
       const user = document.getElementById('username').value.trim();
       const pass = document.getElementById('password').value;
 
-      // Validação simples
       if(user === VALID_USERNAME && pass === VALID_PASSWORD){
         showMessage('Login bem‑sucedido. Redirecionando...', 'success');
-        // exemplo de ação: redirecionar para uma área protegida local
+        // Redireciona para o painel do caso Marta
         setTimeout(()=>{
-          // aqui poderia abrir outra página, por exemplo: window.location.href = 'dashboard.html';
-          alert('Login confirmado para "' + VALID_USERNAME + '" — este é um exemplo local.');
+          window.location.href = 'caso-marta.html';
         }, 700);
       } else {
         showMessage('Usuário ou senha inválidos. Tente novamente.');
