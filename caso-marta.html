@@ -14,18 +14,18 @@
     header {
         background: #1f2937;
         color: white;
-        padding: 20px;
+        padding: 16px;
         text-align: center;
     }
     .container {
-        max-width: 900px;
-        margin: 20px auto;
+        max-width: 480px;
+        margin: 10px auto;
         background: white;
-        padding: 20px;
+        padding: 16px;
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    h2 {
+    h2, h3 {
         margin-top: 0;
         color: #111827;
     }
@@ -33,7 +33,7 @@
         background: #e5e7eb;
         border-radius: 12px;
         overflow: hidden;
-        height: 24px;
+        height: 20px;
         margin: 10px 0 20px 0;
     }
     .progress {
@@ -47,7 +47,7 @@
         padding: 0;
     }
     .timeline li {
-        padding: 15px 20px;
+        padding: 12px 16px;
         border-left: 4px solid #e5e7eb;
         margin-left: 20px;
         position: relative;
@@ -66,9 +66,9 @@
         content: '';
         position: absolute;
         left: -12px;
-        top: 15px;
-        width: 20px;
-        height: 20px;
+        top: 12px;
+        width: 16px;
+        height: 16px;
         border-radius: 50%;
         background: #e5e7eb;
         transition: background 0.3s;
@@ -79,37 +79,44 @@
     .details {
         display: none;
         background: #f9fafb;
-        padding: 15px;
-        margin-top: 10px;
+        padding: 12px;
+        margin-top: 8px;
         border-left: 4px solid #3b82f6;
         border-radius: 8px;
     }
-    .badge {
-        display: inline-block;
-        background: #facc15;
-        color: white;
-        padding: 4px 8px;
-        border-radius: 8px;
-        font-size: 0.8em;
-        margin-left: 10px;
-        animation: pop 0.5s ease;
-    }
-    @keyframes pop {
-        0% { transform: scale(0); }
-        60% { transform: scale(1.2); }
-        100% { transform: scale(1); }
-    }
     .evidences {
-        margin-top: 20px;
+        margin-top: 16px;
     }
     .evidences h3 {
         margin-bottom: 10px;
     }
     .evidence-item {
         background: #f3f4f6;
-        padding: 10px;
+        padding: 8px;
         margin-bottom: 10px;
         border-radius: 6px;
+    }
+    .evidence-item img {
+        max-width: 100%;
+        border-radius: 6px;
+    }
+    canvas {
+        width: 100%;
+        height: 150px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        touch-action: none;
+    }
+    button {
+        margin-top: 8px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        background: #4ade80;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-right: 8px;
     }
 </style>
 </head>
@@ -147,7 +154,7 @@
         <li data-step="4">
             4️⃣ Coleta de evidências
             <div class="details">
-                <p>Imagens, prints, documentos e depoimentos.</p>
+                <p>Imagens, prints e documentos.</p>
             </div>
         </li>
         <li data-step="5">
@@ -156,34 +163,82 @@
                 <p>Resumo e conclusões da investigação.</p>
             </div>
         </li>
+        <li data-step="6">
+            6️⃣ Contrato / Autorização
+            <div class="details">
+                <p>Contrato de autorização de investigação confidencial.</p>
+            </div>
+        </li>
     </ul>
 
     <div class="evidences">
         <h3>Evidências</h3>
-        <div class="evidence-item">🔹 Placeholder: imagens do hotel Sallu</div>
-        <div class="evidence-item">🔹 Placeholder: fotos do veículo Peugeot vermelho</div>
-        <div class="evidence-item">🔹 Placeholder: mensagens e notas do investigador</div>
+
+        <div class="evidence-item">
+            <img src="imagens/hotel-sallu.jpg" alt="Hotel Sallu (referência)">
+            <p>Hotel Sallu – fachada (imagem de referência)</p>
+        </div>
+
+        <div class="evidence-item">
+            <img src="imagens/peugeot-vermelho.jpg" alt="Peugeot vermelho (referência)">
+            <p>Veículo Peugeot vermelho – imagem de referência</p>
+        </div>
+
+        <div class="evidence-item">
+            <img src="imagens/ceasa.jpg" alt="CEASA">
+            <p>CEASA – local visitado pelo investigado</p>
+        </div>
+
+        <div class="evidence-item">
+            <p>Mensagens da operadora – ainda não adicionadas</p>
+        </div>
+    </div>
+
+    <div class="evidence-item">
+        <h3>Contrato de Autorização</h3>
+        <textarea rows="6" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;">
+Contrato de autorização de investigação confidencial...
+        </textarea>
+
+        <p>Assinatura:</p>
+        <canvas id="signatureCanvas"></canvas>
+        <button id="clearSig">Limpar</button>
+        <button id="saveSig">Salvar assinatura</button>
     </div>
 </div>
 
 <script>
+    // Linha do tempo interativa e progresso
     const timelineItems = document.querySelectorAll('#timeline li');
     const progress = document.getElementById('progress');
 
     timelineItems.forEach(item => {
         item.addEventListener('click', () => {
-            // Toggle active
             item.classList.toggle('active');
-
-            // Toggle detalhes
             const details = item.querySelector('.details');
             details.style.display = (details.style.display === 'block') ? 'none' : 'block';
 
-            // Atualiza progresso
             const activeSteps = document.querySelectorAll('#timeline li.active').length;
             const totalSteps = timelineItems.length;
             progress.style.width = (activeSteps/totalSteps * 100) + '%';
         });
+    });
+
+    // Canvas de assinatura
+    const canvas = document.getElementById('signatureCanvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    canvas.addEventListener('pointerdown', e => { drawing = true; ctx.beginPath(); ctx.moveTo(e.offsetX, e.offsetY); });
+    canvas.addEventListener('pointermove', e => { if(drawing){ ctx.lineTo(e.offsetX,e.offsetY); ctx.stroke(); }});
+    canvas.addEventListener('pointerup', ()=>{ drawing = false; });
+    canvas.addEventListener('pointerleave', ()=>{ drawing = false; });
+
+    document.getElementById('clearSig').addEventListener('click', ()=>{ ctx.clearRect(0,0,canvas.width,canvas.height); });
+    document.getElementById('saveSig').addEventListener('click', ()=>{
+        const dataURL = canvas.toDataURL('image/png');
+        console.log('Assinatura salva como:', dataURL);
+        alert('Assinatura salva! (exemplo local)');
     });
 </script>
 
