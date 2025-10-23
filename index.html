@@ -1,96 +1,120 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Login - Aplicativo Investigador</title>
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#0ea5a4;--muted:#94a3b8}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#071022 0%, #071733 100%);color:#e6eef8;min-height:100vh;display:flex;align-items:center;justify-content:center}
-    .card{width:360px;padding:28px;border-radius:12px;background:radial-gradient(circle at 10% 10%, rgba(14,165,164,0.06), transparent 20%), var(--card);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-    h1{margin:0 0 8px;font-size:20px}
-    p.lead{margin:0 0 20px;color:var(--muted);font-size:13px}
-    label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
-    input[type="text"],input[type="password"]{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);color:inherit;font-size:14px}
-    .row{display:flex;gap:8px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:#021018;font-weight:600;cursor:pointer}
-    .secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-    .help{font-size:12px;color:var(--muted);margin-top:12px}
-    .msg{margin-top:12px;padding:10px;border-radius:8px;font-size:13px}
-    .msg.success{background:rgba(16,185,129,0.12);color:#7ef3c4}
-    .msg.error{background:rgba(239,68,68,0.08);color:#fda4af}
-    .hint{font-size:11px;color:#a5f3fc;margin-top:8px}
-    footer{margin-top:14px;font-size:11px;color:var(--muted);text-align:center}
-    @media (max-width:420px){.card{width:92vw;padding:18px}}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Login – Aplicativo Investigador</title>
+<style>
+:root{
+  --bg:#071022;
+  --card:#0b1220;
+  --accent:#00d4b4;
+  --muted:#94a3b8;
+  --text:#e6eef8;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,Roboto,Arial,sans-serif;
+  background:linear-gradient(180deg,#071022 0%, #071733 100%);
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.card{
+  width:100%;
+  max-width:420px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:14px;
+  padding:20px;
+  box-shadow:0 12px 40px rgba(2,6,23,0.6);
+  border:1px solid rgba(255,255,255,0.02);
+}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.logo{
+  width:46px;height:46px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),#6fe8d1);
+  display:flex;align-items:center;justify-content:center;color:#021018;font-weight:700;
+  box-shadow:0 6px 18px rgba(0,0,0,0.4);
+}
+h1{margin:0;font-size:18px;color:var(--accent)}
+.lead{color:var(--muted);font-size:13px;margin-top:6px}
+
+label{display:block;font-size:12px;color:var(--muted);margin-top:12px;margin-bottom:6px}
+input[type="text"],input[type="password"]{
+  width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
+  background:rgba(255,255,255,0.02);color:var(--text);font-size:14px;
+}
+.row{display:flex;gap:8px;margin-top:12px}
+button{
+  flex:1;padding:10px;border-radius:10px;border:0;background:var(--accent);color:#021018;font-weight:700;
+}
+button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
+
+.msg{margin-top:12px;padding:10px;border-radius:8px;font-size:13px}
+.msg.success{background:rgba(16,185,129,0.12);color:#7ef3c4}
+.msg.error{background:rgba(239,68,68,0.08);color:#fda4af}
+
+.footer{margin-top:12px;font-size:12px;color:var(--muted);text-align:center}
+@media (max-width:420px){.card{padding:16px}}
+</style>
 </head>
 <body>
   <main class="card" role="main">
-    <h1>Área restrita</h1>
-    <p class="lead">Entre com seu usuário e senha para continuar.</p>
+    <div class="brand">
+      <div class="logo">AI</div>
+      <div>
+        <h1>Agência Investigador</h1>
+        <div class="lead">Acesso ao painel — Caso Marta</div>
+      </div>
+    </div>
 
     <form id="loginForm" autocomplete="off">
-      <div style="margin-bottom:12px">
-        <label for="username">Nome de usuário</label>
-        <input id="username" name="username" type="text" placeholder="usuário" required />
-      </div>
-      <div style="margin-bottom:6px">
-        <label for="password">Senha</label>
-        <input id="password" name="password" type="password" placeholder="senha" required />
-      </div>
+      <label for="username">Nome de usuário</label>
+      <input id="username" name="username" type="text" placeholder="usuário" required>
 
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
-        <button type="submit" class="btn">Entrar</button>
-        <button type="button" id="fillBtn" class="btn secondary">Preencher</button>
+      <label for="password">Senha</label>
+      <input id="password" name="password" type="password" placeholder="senha" required>
+
+      <div class="row">
+        <button type="submit">Entrar</button>
+        <button type="button" id="fillBtn" class="secondary">Preencher</button>
       </div>
 
       <div id="message" aria-live="polite"></div>
-      <p class="hint"> <code>marta</code> <code></code></p>
+      <div class="footer">Aplicativo Investigador © 2025</div>
     </form>
-
-    <footer>Aplicativo Investigador</footer>
   </main>
 
-  <script>
-    // Credenciais esperadas
-    const VALID_USERNAME = 'marta';
-    const VALID_PASSWORD = '2025';
-
-    const form = document.getElementById('loginForm');
-    const msgEl = document.getElementById('message');
-    const fillBtn = document.getElementById('fillBtn');
-
-    function showMessage(text, type = 'error'){
-      msgEl.innerHTML = '';
-      const div = document.createElement('div');
-      div.className = 'msg ' + (type === 'success' ? 'success' : 'error');
-      div.textContent = text;
-      msgEl.appendChild(div);
-    }
-
-    // Preenche os campos com as credenciais
-    fillBtn.addEventListener('click', ()=>{
-      document.getElementById('username').value = VALID_USERNAME;
-      document.getElementById('password').value = VALID_PASSWORD;
-      showMessage('Campos preenchidos com as credenciais solicitadas. Clique em Entrar.', 'success');
-    });
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const user = document.getElementById('username').value.trim();
-      const pass = document.getElementById('password').value;
-
-      if(user === VALID_USERNAME && pass === VALID_PASSWORD){
-        showMessage('Login bem‑sucedido. Redirecionando...', 'success');
-        // Redireciona para o painel do caso Marta
-        setTimeout(()=>{
-          window.location.href = 'caso-marta.html';
-        }, 700);
-      } else {
-        showMessage('Usuário ou senha inválidos. Tente novamente.');
-      }
-    });
-  </script>
+<script>
+const VALID_USERNAME='marta';
+const VALID_PASSWORD='2025';
+const form=document.getElementById('loginForm');
+const msgEl=document.getElementById('message');
+document.getElementById('fillBtn').addEventListener('click',()=>{
+  document.getElementById('username').value=VALID_USERNAME;
+  document.getElementById('password').value=VALID_PASSWORD;
+  showMessage('Campos preenchidos. Clique em Entrar.','success');
+});
+function showMessage(txt,type='error'){
+  msgEl.innerHTML='';
+  const d=document.createElement('div'); d.className='msg '+(type==='success'?'success':'error'); d.textContent=txt;
+  msgEl.appendChild(d);
+}
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const user=document.getElementById('username').value.trim();
+  const pass=document.getElementById('password').value;
+  if(user===VALID_USERNAME && pass===VALID_PASSWORD){
+    showMessage('Login bem-sucedido. Abrindo painel...','success');
+    setTimeout(()=> location.href='caso-marta.html',700);
+  } else {
+    showMessage('Usuário ou senha inválidos.');
+  }
+});
+</script>
 </body>
 </html>
