@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Investigação Marta – Agência Investigador</title>
   <style>
     :root {
@@ -12,170 +12,129 @@
       --muted: #94a3b8;
       --text: #e6eef8;
     }
-
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-      background: linear-gradient(180deg, #071022 0%, #071733 100%);
+      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg,#071022 0%, #071733 100%);
       color: var(--text);
-      padding: 12px;
-      overflow-x: hidden;
-      line-height: 1.55;
+      padding: 10px;
     }
-
     header {
       text-align: center;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
-
     header h1 {
-      font-size: 5vw;
-      margin: 6px 0 2px;
-      line-height: 1.2;
+      font-size: 20px;
+      margin: 6px 0 0;
     }
-
     header p {
       color: var(--muted);
-      font-size: 3.5vw;
-      margin: 0;
+      font-size: 13px;
+      margin: 4px 0 0;
     }
 
-    /* Timeline */
     .timeline {
       list-style: none;
       padding: 0;
-      margin: 0;
-      border-left: 2px solid rgba(255, 255, 255, 0.1);
+      margin: 20px 0;
+      border-left: 2px solid rgba(255,255,255,0.1);
     }
-
     .timeline li {
-      margin-bottom: 18px;
-      padding-left: 14px;
+      margin-bottom: 15px;
+      padding-left: 12px;
       position: relative;
+      cursor: pointer;
     }
-
     .timeline li::before {
       content: "●";
       position: absolute;
       left: -10px;
       top: 0;
       color: var(--accent);
-      font-size: 12px;
     }
-
-    .timeline .details {
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 10px;
-      padding: 10px;
-      font-size: 3.5vw;
-      margin-top: 5px;
-      line-height: 1.45;
-    }
-
-    /* Galeria */
-    section.gallery {
-      margin-top: 28px;
-    }
-
-    section.gallery h2 {
-      font-size: 4.3vw;
-      margin-bottom: 10px;
-      text-align: center;
+    .timeline li h3 {
+      margin: 0;
+      font-size: 15px;
       color: var(--accent);
     }
+    .timeline .details {
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 13px;
+      margin-top: 6px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    section.gallery {
+      margin-top: 30px;
+    }
+    section.gallery h2 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(42%, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
     }
-
     .evidence-item {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.05);
       border-radius: 10px;
       overflow: hidden;
-      font-size: 3.3vw;
+      font-size: 12px;
       text-align: center;
       color: var(--muted);
-      padding-bottom: 6px;
     }
-
     .evidence-item img {
       width: 100%;
-      height: 120px;
-      object-fit: cover;
       display: block;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      height: 110px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
 
-    /* Contrato e Assinatura */
     section.contract {
-      margin-top: 28px;
-      padding: 14px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 12px;
+      margin-top: 30px;
+      padding: 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
     }
-
-    section.contract h2 {
-      font-size: 4.3vw;
-      color: var(--accent);
-      margin-bottom: 6px;
-      text-align: center;
-    }
-
-    section.contract p {
-      font-size: 3.6vw;
-      margin-bottom: 10px;
-      text-align: center;
-      color: var(--muted);
-    }
-
     canvas {
       display: block;
       width: 100%;
-      height: 160px;
-      border: 1px dashed rgba(255, 255, 255, 0.15);
+      height: 180px;
+      border: 1px dashed rgba(255,255,255,0.1);
       border-radius: 8px;
       margin-top: 8px;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255,255,255,0.02);
     }
-
     button {
-      display: inline-block;
       background: var(--accent);
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       color: #021018;
       font-weight: 600;
-      padding: 10px 14px;
-      margin: 6px 3px;
-      font-size: 3.8vw;
+      padding: 8px 12px;
+      margin-top: 8px;
       cursor: pointer;
-      width: calc(50% - 6px);
-      text-align: center;
+      width: 100%;
     }
 
     footer {
-      margin-top: 24px;
+      margin-top: 30px;
       text-align: center;
-      font-size: 3vw;
+      font-size: 11px;
       color: var(--muted);
       opacity: 0.8;
-    }
-
-    @media (min-width: 800px) {
-      /* Se abrir em desktop, limitar largura */
-      body {
-        max-width: 500px;
-        margin: 0 auto;
-      }
-      header h1 { font-size: 22px; }
-      .timeline .details { font-size: 14px; }
     }
   </style>
 </head>
@@ -186,37 +145,43 @@
   </header>
 
   <ul class="timeline" id="timeline">
-    <li><strong>1️⃣ Coleta de informações iniciais</strong>
+    <li>
+      <h3>1️⃣ Coleta de informações iniciais</h3>
       <div class="details">
         <p><strong>Status:</strong> Concluído ✅</p>
         <p>Informações fornecidas pela cliente Marta, incluindo comportamento suspeito do marido, horários, veículos e contatos disponíveis.</p>
       </div>
     </li>
-    <li><strong>2️⃣ Investigação online</strong>
+    <li>
+      <h3>2️⃣ Investigação online</h3>
       <div class="details">
         <p><strong>Status:</strong> Atualizando 🔄</p>
         <p>Verificação de atividades digitais e redes sociais. Até o momento, não foi encontrada evidência plausível.</p>
       </div>
     </li>
-    <li><strong>3️⃣ Investigação de campo</strong>
+    <li>
+      <h3>3️⃣ Investigação de campo</h3>
       <div class="details">
         <p><strong>Status:</strong> Em andamento 🔄</p>
         <p>Vigilância presencial nos locais e horários indicados, como hotel e CEASA, para coleta de provas.</p>
       </div>
     </li>
-    <li><strong>4️⃣ Coleta de evidências</strong>
+    <li>
+      <h3>4️⃣ Coleta de evidências</h3>
       <div class="details">
         <p><strong>Status:</strong> Parcial ✅</p>
         <p>Evidências já coletadas: imagens de referência do hotel, Peugeot vermelho e CEASA. Mensagens da operadora ainda serão incluídas.</p>
       </div>
     </li>
-    <li><strong>5️⃣ Relatório final</strong>
+    <li>
+      <h3>5️⃣ Relatório final</h3>
       <div class="details">
         <p><strong>Status:</strong> Atualizando 🔄</p>
         <p>Resumo e conclusões da investigação. Será disponibilizado ao final do processo.</p>
       </div>
     </li>
-    <li><strong>6️⃣ Contrato / Autorização</strong>
+    <li>
+      <h3>6️⃣ Contrato / Autorização</h3>
       <div class="details">
         <p><strong>Status:</strong> Incluído ✅</p>
         <p>Contrato de autorização de investigação confidencial. Cliente pode assinar diretamente no painel.</p>
@@ -244,13 +209,11 @@
 
   <section class="contract">
     <h2>🖋️ Contrato e Assinatura</h2>
-    <p>Leia atentamente o contrato antes de assinar.</p>
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;">
-      <button id="openContract">Abrir Contrato</button>
-      <button id="clearSig">Limpar</button>
-    </div>
+    <p>Leia atentamente o contrato antes de assinar. O documento autoriza a Agência Investigador a realizar a investigação de forma confidencial.</p>
+    <button id="openContract">Abrir Contrato</button>
     <canvas id="signaturePad"></canvas>
-    <button id="saveSig" style="width:100%;margin-top:8px;">Salvar Assinatura</button>
+    <button id="clearSig">Limpar Assinatura</button>
+    <button id="saveSig">Salvar Assinatura</button>
   </section>
 
   <footer>
@@ -258,73 +221,56 @@
   </footer>
 
   <script>
-    // Abrir contrato
-    document.getElementById('openContract').addEventListener('click', () => {
-      window.open('contrato.html', '_blank');
+    // Efeito de abrir/fechar os detalhes
+    document.querySelectorAll('.timeline li').forEach(item => {
+      item.addEventListener('click', () => {
+        const details = item.querySelector('.details');
+        details.style.display = details.style.display === 'block' ? 'none' : 'block';
+      });
     });
 
-    // Canvas de assinatura adaptado ao toque
+    // Abrir contrato
+    document.getElementById('openContract').addEventListener('click', ()=>{
+      window.open('contrato.html','_blank');
+    });
+
+    // Canvas assinatura (mouse + toque)
     const canvas = document.getElementById('signaturePad');
     const ctx = canvas.getContext('2d');
     let drawing = false;
 
+    function pos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+      const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+      return {x, y};
+    }
+
     function resizeCanvas() {
       const data = canvas.toDataURL();
       canvas.width = canvas.offsetWidth;
-      canvas.height = 160;
+      canvas.height = 180;
       const img = new Image();
       img.src = data;
       img.onload = () => ctx.drawImage(img, 0, 0);
     }
-
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    function getPos(e) {
-      const rect = canvas.getBoundingClientRect();
-      if (e.touches) {
-        return {
-          x: e.touches[0].clientX - rect.left,
-          y: e.touches[0].clientY - rect.top
-        };
-      }
-      return { x: e.offsetX, y: e.offsetY };
-    }
+    canvas.addEventListener('mousedown', e => { drawing = true; const p = pos(e); ctx.moveTo(p.x, p.y); });
+    canvas.addEventListener('mousemove', e => { if(drawing){ const p = pos(e); ctx.lineTo(p.x, p.y); ctx.strokeStyle='#0ea5a4'; ctx.lineWidth=2; ctx.stroke(); }});
+    canvas.addEventListener('mouseup', ()=> drawing=false);
+    canvas.addEventListener('mouseleave', ()=> drawing=false);
 
-    function startDraw(e) {
-      e.preventDefault();
-      drawing = true;
-      const pos = getPos(e);
-      ctx.beginPath();
-      ctx.moveTo(pos.x, pos.y);
-    }
+    canvas.addEventListener('touchstart', e => { drawing = true; const p = pos(e); ctx.moveTo(p.x, p.y); });
+    canvas.addEventListener('touchmove', e => { if(drawing){ e.preventDefault(); const p = pos(e); ctx.lineTo(p.x, p.y); ctx.strokeStyle='#0ea5a4'; ctx.lineWidth=2; ctx.stroke(); }});
+    canvas.addEventListener('touchend', ()=> drawing=false);
 
-    function draw(e) {
-      if (!drawing) return;
-      e.preventDefault();
-      const pos = getPos(e);
-      ctx.lineTo(pos.x, pos.y);
-      ctx.strokeStyle = "#0ea5a4";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-    }
-
-    function stopDraw() {
-      drawing = false;
-    }
-
-    canvas.addEventListener('mousedown', startDraw);
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mouseup', stopDraw);
-    canvas.addEventListener('touchstart', startDraw);
-    canvas.addEventListener('touchmove', draw);
-    canvas.addEventListener('touchend', stopDraw);
-
-    document.getElementById('clearSig').addEventListener('click', () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    document.getElementById('clearSig').addEventListener('click', ()=>{
+      ctx.clearRect(0,0,canvas.width,canvas.height);
     });
 
-    document.getElementById('saveSig').addEventListener('click', () => {
+    document.getElementById('saveSig').addEventListener('click', ()=>{
       const img = canvas.toDataURL('image/png');
       const a = document.createElement('a');
       a.href = img;
