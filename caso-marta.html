@@ -1,33 +1,254 @@
-<section class="gallery">
-  <h2>📸 Evidências Visuais / Operações</h2>
-  <div class="gallery-grid">
-    <div class="evidence-item">
-      <img src="hotel-sallu.jpg" alt="Hotel Sallu (referência)">
-      <p>Hotel Sallu – fachada</p>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Investigação Marta – Agência Investigador</title>
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --accent: #0ea5a4;
+      --muted: #94a3b8;
+      --text: #e6eef8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg,#071022 0%, #071733 100%);
+      color: var(--text);
+      padding: 10px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: 20px;
+      margin: 6px 0 0;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 4px 0 0;
+    }
+    .timeline {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      border-left: 2px solid rgba(255,255,255,0.1);
+    }
+    .timeline li {
+      margin-bottom: 20px;
+      padding-left: 12px;
+      position: relative;
+    }
+    .timeline li::before {
+      content: "●";
+      position: absolute;
+      left: -10px;
+      top: 0;
+      color: var(--accent);
+    }
+    .timeline .details {
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+    section.gallery {
+      margin-top: 30px;
+    }
+    section.gallery h2 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .evidence-item {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 12px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .evidence-item img {
+      width: 100%;
+      display: block;
+      height: 110px;
+      object-fit: cover;
+    }
+    section.contract {
+      margin-top: 30px;
+      padding: 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 180px;
+      border: 1px dashed rgba(255,255,255,0.1);
+      border-radius: 8px;
+      margin-top: 8px;
+      background: rgba(255,255,255,0.02);
+    }
+    button {
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      color: #021018;
+      font-weight: 600;
+      padding: 8px 12px;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Investigação – Cliente Marta</h1>
+    <p>Relatório interativo da Agência Investigador</p>
+  </header>
+
+  <ul class="timeline" id="timeline">
+    <li data-step="1">1️⃣ Coleta de informações iniciais
+      <div class="details">
+        <p><strong>Status:</strong> Concluído ✅</p>
+        <p>Informações fornecidas pela cliente Marta, incluindo comportamento suspeito do marido, horários, veículos e contatos disponíveis.</p>
+      </div>
+    </li>
+    <li data-step="2">2️⃣ Investigação online
+      <div class="details">
+        <p><strong>Status:</strong> Atualizando 🔄</p>
+        <p>Verificação de atividades digitais e redes sociais. Até o momento, não foi encontrada evidência plausível.</p>
+      </div>
+    </li>
+    <li data-step="3">3️⃣ Investigação de campo
+      <div class="details">
+        <p><strong>Status:</strong> Em andamento 🔄</p>
+        <p>Vigilância presencial nos locais e horários indicados, como hotel e CEASA, para coleta de provas.</p>
+      </div>
+    </li>
+    <li data-step="4">4️⃣ Coleta de evidências
+      <div class="details">
+        <p><strong>Status:</strong> Parcial ✅</p>
+        <p>Evidências já coletadas: imagens de referência do hotel, Peugeot vermelho, CEASA e reconhecimento facial. Mensagens da operadora ainda serão incluídas.</p>
+      </div>
+    </li>
+    <li data-step="5">5️⃣ Relatório final
+      <div class="details">
+        <p><strong>Status:</strong> Atualizando 🔄</p>
+        <p>Resumo e conclusões da investigação. Será disponibilizado ao final do processo.</p>
+      </div>
+    </li>
+    <li data-step="6">6️⃣ Contrato / Autorização
+      <div class="details">
+        <p><strong>Status:</strong> Incluído ✅</p>
+        <p>Contrato de autorização de investigação confidencial. Cliente pode assinar diretamente no painel.</p>
+      </div>
+    </li>
+  </ul>
+
+  <section class="gallery">
+    <h2>📸 Evidências Visuais</h2>
+    <div class="gallery-grid">
+      <div class="evidence-item">
+        <img src="hotel-sallu.jpg" alt="Hotel Sallu (referência)">
+        <p>Hotel Sallu – fachada</p>
+      </div>
+      <div class="evidence-item">
+        <img src="peugeot-vermelho.jpg" alt="Peugeot vermelho">
+        <p>Veículo Peugeot vermelho – referência</p>
+      </div>
+      <div class="evidence-item">
+        <img src="ceasa.jpg" alt="CEASA">
+        <p>CEASA – local de possível deslocamento</p>
+      </div>
+      <div class="evidence-item">
+        <img src="reconhecimento.jpg" alt="Reconhecimento facial">
+        <p>Reconhecimento facial – simulação</p>
+      </div>
+      <div class="evidence-item">
+        <img src="câmera1.jpg" alt="Câmera 1">
+        <p>Câmera 1 – operação</p>
+      </div>
+      <div class="evidence-item">
+        <img src="centro-de-operacoes.jpg" alt="Centro de Operações">
+        <p>Centro de Operações</p>
+      </div>
+      <div class="evidence-item">
+        <img src="painel.jpg" alt="Painel de monitoramento">
+        <p>Painel de monitoramento</p>
+      </div>
     </div>
-    <div class="evidence-item">
-      <img src="peugeot-vermelho.jpg" alt="Peugeot vermelho">
-      <p>Veículo Peugeot vermelho – referência</p>
-    </div>
-    <div class="evidence-item">
-      <img src="ceasa.jpg" alt="CEASA">
-      <p>CEASA – local de possível deslocamento</p>
-    </div>
-    <div class="evidence-item">
-      <img src="reconhecimento.jpg" alt="Reconhecimento facial">
-      <p>Reconhecimento facial – simulação</p>
-    </div>
-    <div class="evidence-item">
-      <img src="câmera1.jpg" alt="Câmera 1">
-      <p>Câmera 1 – operação</p>
-    </div>
-    <div class="evidence-item">
-      <img src="centro-de-operacoes.jpg" alt="Centro de Operações">
-      <p>Centro de Operações</p>
-    </div>
-    <div class="evidence-item">
-      <img src="painel.jpg" alt="Painel de monitoramento">
-      <p>Painel de monitoramento</p>
-    </div>
-  </div>
-</section>
+  </section>
+
+  <section class="contract">
+    <h2>🖋️ Contrato e Assinatura</h2>
+    <p>Leia atentamente o contrato antes de assinar. O documento autoriza a Agência Investigador a realizar a investigação de forma confidencial.</p>
+    <button id="openContract">Abrir Contrato</button>
+    <canvas id="signaturePad"></canvas>
+    <button id="clearSig">Limpar Assinatura</button>
+    <button id="saveSig">Salvar Assinatura</button>
+  </section>
+
+  <footer>
+    Agência Investigador © 2025 – Todos os direitos reservados.
+  </footer>
+
+  <script>
+    // Abrir contrato
+    document.getElementById('openContract').addEventListener('click', ()=>{
+      window.open('contrato.html','_blank');
+    });
+
+    // Canvas de assinatura
+    const canvas = document.getElementById('signaturePad');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    function resizeCanvas() {
+      const data = canvas.toDataURL();
+      canvas.width = canvas.offsetWidth;
+      canvas.height = 180;
+      const img = new Image();
+      img.src = data;
+      img.onload = () => ctx.drawImage(img, 0, 0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    canvas.addEventListener('mousedown', e => { drawing = true; ctx.moveTo(e.offsetX, e.offsetY); });
+    canvas.addEventListener('mousemove', e => { if(drawing){ ctx.lineTo(e.offsetX, e.offsetY); ctx.strokeStyle='#0ea5a4'; ctx.lineWidth=2; ctx.stroke(); }});
+    canvas.addEventListener('mouseup', ()=> drawing=false);
+    canvas.addEventListener('mouseleave', ()=> drawing=false);
+
+    document.getElementById('clearSig').addEventListener('click', ()=>{
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+    });
+
+    document.getElementById('saveSig').addEventListener('click', ()=>{
+      const img = canvas.toDataURL('image/png');
+      const a = document.createElement('a');
+      a.href = img;
+      a.download = 'assinatura_marta.png';
+      a.click();
+      alert('Assinatura salva com sucesso!');
+    });
+  </script>
+</body>
+</html>
