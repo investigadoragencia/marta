@@ -1,133 +1,155 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contrato de Autorização - Agência Investigador</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contrato – Agência Investigador</title>
   <style>
     :root {
-      --bg: #0f1724;
-      --accent: #0ea5a4;
-      --muted: #94a3b8;
+      --bg: #0d1117;
+      --card: #161b22;
+      --accent: #00e1c6;
       --text: #e6eef8;
+      --muted: #94a3b8;
     }
+    * { box-sizing: border-box; }
     body {
-      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
-      background: linear-gradient(180deg,#071022 0%, #071733 100%);
-      color: var(--text);
-      padding: 16px;
-      line-height: 1.6;
       margin: 0;
+      font-family: "Inter", sans-serif;
+      background: linear-gradient(180deg,#0a0f1a 0%, #0d141f 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
     header {
+      width: 100%;
       text-align: center;
       margin-bottom: 20px;
     }
     header h1 {
       font-size: 22px;
-      margin: 8px 0;
-    }
-    p, li {
-      font-size: 14px;
-    }
-    h2 {
+      margin: 0;
       color: var(--accent);
-      margin-top: 24px;
-      font-size: 16px;
     }
-    .assinatura {
-      margin-top: 24px;
-      padding: 12px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 8px;
-    }
-    canvas {
-      display: block;
+    .contract-box {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 600px;
       width: 100%;
-      height: 180px;
-      border: 1px dashed rgba(255,255,255,0.2);
-      border-radius: 8px;
-      background: rgba(255,255,255,0.02);
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+    .contract-box h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+    .contract-text {
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 14px;
+      line-height: 1.6;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+    .signature-area {
       margin-top: 10px;
     }
+    canvas {
+      width: 100%;
+      height: 180px;
+      border: 2px dashed rgba(255,255,255,0.1);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      margin-top: 8px;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
     button {
+      flex: 1;
       background: var(--accent);
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       color: #021018;
       font-weight: 600;
-      padding: 8px 12px;
-      margin: 8px 4px 0 0;
+      padding: 10px 14px;
       cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      opacity: 0.85;
     }
     footer {
-      text-align: center;
       margin-top: 30px;
-      font-size: 11px;
+      font-size: 12px;
       color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 18px; }
+      .contract-box { padding: 16px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Contrato de Autorização de Investigação</h1>
-    <p>Agência Investigador – Documento Digital</p>
+    <h1>Contrato de Autorização</h1>
+    <p>Agência Investigador – Documento Confidencial</p>
   </header>
 
-  <main>
-    <p>
-      Pelo presente instrumento, a Sra. <strong>Marta</strong>, doravante denominada <strong>CONTRATANTE</strong>,
-      autoriza a empresa <strong>Agência Investigador</strong>, doravante denominada <strong>CONTRATADA</strong>,
-      a realizar investigação particular e confidencial conforme as condições abaixo.
-    </p>
-
-    <h2>Cláusula 1 – Objeto</h2>
-    <p>
-      A CONTRATADA compromete-se a realizar investigação referente a suposta infidelidade conjugal, observando
-      os limites legais e éticos, coletando informações, provas fotográficas, vídeos e registros necessários
-      para o esclarecimento dos fatos.
-    </p>
-
-    <h2>Cláusula 2 – Sigilo e confidencialidade</h2>
-    <p>
-      Todas as informações obtidas no curso da investigação serão mantidas sob sigilo absoluto,
-      sendo vedada sua divulgação a terceiros sem a autorização expressa da CONTRATANTE.
-    </p>
-
-    <h2>Cláusula 3 – Responsabilidade</h2>
-    <p>
-      A CONTRATADA se compromete a atuar de forma profissional e discreta, dentro dos limites legais,
-      não se responsabilizando por interpretações ou consequências externas ao escopo da investigação.
-    </p>
-
-    <h2>Cláusula 4 – Vigência</h2>
-    <p>
-      Este contrato entra em vigor na data da assinatura digital e permanece válido até a entrega
-      do relatório final, podendo ser prorrogado mediante acordo entre as partes.
-    </p>
-
-    <h2>Cláusula 5 – Autorização</h2>
-    <p>
-      A CONTRATANTE declara estar ciente da natureza do serviço e autoriza a execução da investigação
-      particular nos termos acima, bem como o tratamento dos dados fornecidos, conforme a Lei nº 13.709/2018 (LGPD).
-    </p>
-
-    <div class="assinatura">
-      <h2>🖋️ Assinatura Digital da Contratante</h2>
-      <p>Assine no campo abaixo para confirmar a autorização:</p>
-      <canvas id="signature"></canvas>
-      <button id="limpar">Limpar</button>
-      <button id="salvar">Salvar</button>
-      <button id="confirmar">Confirmar Assinatura</button>
+  <div class="contract-box">
+    <h2>📄 Termos da Investigação</h2>
+    <div class="contract-text">
+      <p>
+        Eu, <strong>Marta (cliente)</strong>, declaro que autorizo a <strong>Agência Investigador</strong> a realizar
+        investigação particular sobre os fatos descritos em minha solicitação, respeitando as normas legais vigentes.
+      </p>
+      <p>
+        A investigação será conduzida de forma ética, sigilosa e dentro dos limites da legislação brasileira,
+        conforme o Art. 144 da Constituição Federal e a Lei nº 13.432/2017.
+      </p>
+      <p>
+        Concordo que as informações obtidas são de uso exclusivo do contratante e não poderão ser divulgadas sem
+        minha autorização expressa.
+      </p>
+      <p>
+        O presente documento é válido como autorização formal, e sua assinatura digital tem a mesma validade
+        jurídica da assinatura física.
+      </p>
+      <p><strong>Data:</strong> <span id="dataAtual"></span></p>
     </div>
-  </main>
+
+    <div class="signature-area">
+      <h2>🖋️ Assinatura Digital</h2>
+      <canvas id="signaturePad"></canvas>
+      <div class="buttons">
+        <button id="clearSig">Limpar</button>
+        <button id="saveSig">Salvar</button>
+        <button id="backBtn">Voltar</button>
+      </div>
+    </div>
+  </div>
 
   <footer>
-    Agência Investigador © 2025 – Todos os direitos reservados.
+    © 2025 Agência Investigador – Todos os direitos reservados.
   </footer>
 
   <script>
-    const canvas = document.getElementById("signature");
+    // Data atual
+    document.getElementById("dataAtual").textContent = new Date().toLocaleDateString("pt-BR");
+
+    // Canvas assinatura
+    const canvas = document.getElementById("signaturePad");
     const ctx = canvas.getContext("2d");
     let drawing = false;
 
@@ -142,40 +164,34 @@
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    canvas.addEventListener("mousedown", (e) => {
-      drawing = true;
-      ctx.moveTo(e.offsetX, e.offsetY);
+    canvas.addEventListener("mousedown", e => { drawing = true; ctx.moveTo(e.offsetX, e.offsetY); });
+    canvas.addEventListener("mousemove", e => {
+      if (drawing) {
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.strokeStyle = "#00e1c6";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
     });
+    canvas.addEventListener("mouseup", () => drawing = false);
+    canvas.addEventListener("mouseleave", () => drawing = false);
 
-    canvas.addEventListener("mousemove", (e) => {
-      if (!drawing) return;
-      ctx.lineTo(e.offsetX, e.offsetY);
-      ctx.strokeStyle = "#0ea5a4";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-    });
-
-    canvas.addEventListener("mouseup", () => (drawing = false));
-    canvas.addEventListener("mouseleave", () => (drawing = false));
-
-    document.getElementById("limpar").addEventListener("click", () => {
+    document.getElementById("clearSig").addEventListener("click", () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 
-    document.getElementById("salvar").addEventListener("click", () => {
+    document.getElementById("saveSig").addEventListener("click", () => {
       const img = canvas.toDataURL("image/png");
       const a = document.createElement("a");
       a.href = img;
       a.download = "assinatura_marta.png";
       a.click();
-      alert("Assinatura salva localmente.");
+      alert("Assinatura salva com sucesso!");
     });
 
-    document.getElementById("confirmar").addEventListener("click", () => {
-      const assinatura = canvas.toDataURL("image/png");
-      localStorage.setItem("assinatura_marta", assinatura);
-      alert("Assinatura confirmada e vinculada ao contrato.");
-      window.close();
+    // Botão voltar
+    document.getElementById("backBtn").addEventListener("click", () => {
+      window.location.href = "painel.html";
     });
   </script>
 </body>
