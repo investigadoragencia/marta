@@ -3,88 +3,286 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Testar localização — clique para obter</title>
+  <title>Painel Investigativo</title>
   <style>
-    body { font-family: Inter, system-ui, Arial; padding: 20px; max-width:720px; margin:auto; }
-    a.button {
-      display:inline-block; padding:10px 16px; background:#0b74de; color:white; border-radius:8px;
-      text-decoration:none; font-weight:600;
+    :root {
+      --bg: #0a0a0a;
+      --panel: #1a1a1a;
+      --accent: #00d4b4;
+      --muted: #98a8b6;
+      --text: #e6eef8;
+      --glass: rgba(255, 255, 255, 0.03);
     }
-    #status { margin-top:12px; color:#333; }
-    #coords { margin-top:8px; font-family:monospace; background:#f6f8fb; padding:8px; border-radius:6px; }
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #0a0a0a 0%, #0a0a0a 100%);
+      color: var(--text);
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+    }
+    .wrap {
+      max-width: 520px;
+      width: 100%;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand h1 {
+      margin: 0;
+      color: var(--accent);
+      font-size: 18px;
+    }
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 12px 40px rgba(2, 6, 23, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .quick button {
+      background: var(--panel);
+      border-radius: 10px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-start;
+    }
+    .quick button strong {
+      color: var(--accent);
+      font-size: 14px;
+    }
+    .section {
+      margin-top: 8px;
+    }
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .step {
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+    }
+    .step h3 {
+      margin: 0;
+      color: var(--accent);
+      font-size: 15px;
+    }
+    .step .meta {
+      display: none;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      background: var(--glass);
+      padding: 8px;
+      border-radius: 8px;
+    }
+    .step.open .meta {
+      display: block;
+      animation: fade 0.18s;
+    }
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .thumb {
+      background: var(--panel);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      text-align: center;
+    }
+    .thumb img {
+      width: 100%;
+      height: 92px;
+      object-fit: cover;
+      display: block;
+    }
+    .thumb p {
+      margin: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .contract {
+      margin-top: 12px;
+      background: var(--panel);
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+    .canvas-mini {
+      width: 100%;
+      height: 120px;
+      border-radius: 8px;
+      border: 1px dashed rgba(255, 255, 255, 0.06);
+      background: var(--glass);
+      margin-top: 8px;
+    }
+    .controls {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      border: 0;
+      background: var(--accent);
+      color: #021018;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .signature-preview {
+      margin-top: 10px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .signature-preview img {
+      width: 100%;
+      display: block;
+    }
+    .footer {
+      margin-top: 12px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media (max-width: 420px) {
+      .thumb img {
+        height: 86px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h2>Testar localização — clique só quando quiser</h2>
+  <div class="wrap">
+    <div class="header">
+      <div class="brand">
+        <h1>Investigação Digital</h1>
+        <p>Painel — Caso Secreto</p>
+      </div>
+      <div style="display: flex; gap: 8px">
+        <button id="btnLogout" class="btn secondary" style="padding: 8px 10px">Sair</button>
+      </div>
+    </div>
 
-  <!-- Link que dispara a captura da localização -->
-  <a href="#" id="getLocation" class="button">Obter minha localização</a>
+    <div class="card">
+      <div class="quick">
+        <button id="openTimeline">
+          <strong>🕵️ Etapas</strong>
+          <span style="font-size: 12px; color: var(--muted)">Timeline interativa</span>
+        </button>
+        <button id="openGallery">
+          <strong>📸 Evidências</strong>
+          <span style="font-size: 12px; color: var(--muted)">Fotos & documentos</span>
+        </button>
+        <button id="openContract">
+          <strong>🖋️ Contrato</strong>
+          <span style="font-size: 12px; color: var(--muted)">Assinar autorização</span>
+        </button>
+        <button id="btnConfig" class="secondary">
+          <strong>⚙️ </strong>
+          <span style="font-size: 12px; color: var(--muted)">Configurações</span>
+        </button>
+      </div>
 
-  <div id="status"></div>
-  <div id="coords" style="display:none"></div>
+      <div class="section">
+        <div class="section-title">
+          <h2 style="color: var(--accent); margin: 0">Linha do Tempo</h2>
+        </div>
+        <div class="stack" id="steps">
+          <div class="step" data-step="1">
+            <h3>1️⃣ Coleta de informações iniciais</h3>
+            <div class="meta">
+              <p><strong>Status:</strong> Concluído ✅</p>
+              <p>Informações fornecidas pela cliente Marta, incluindo comportamento suspeito do marido, horários, veículos e contatos disponíveis.</p>
+            </div>
+          </div>
 
-  <script>
-    const btn = document.getElementById('getLocation');
-    const status = document.getElementById('status');
-    const coordsBox = document.getElementById('coords');
+          <div class="step" data-step="2">
+            <h3>2️⃣ Investigação online</h3>
+            <div class="meta">
+              <p><strong>Status:</strong> Atualizando 🔄</p>
+              <p>Verificação de atividades digitais e redes sociais. Até o momento, não foi encontrada evidência plausível.</p>
+            </div>
+          </div>
 
-    // Opções para getCurrentPosition
-    const geoOptions = {
-      enableHighAccuracy: true, // pedirá GPS quando possível
-      timeout: 10000,           // 10s
-      maximumAge: 0
-    };
+          <div class="step" data-step="3">
+            <h3>3️⃣ Investigação de campo</h3>
+            <div class="meta">
+              <p><strong>Status:</strong> Em andamento 🔄</p>
+              <p>Vigilância presencial nos locais e horários indicados, como hotel e CEASA, para coleta de provas.</p>
+            </div>
+          </div>
 
-    btn.addEventListener('click', async (ev) => {
-      ev.preventDefault();
-      status.textContent = 'Solicitando permissão de localização...';
-      coordsBox.style.display = 'none';
-      coordsBox.textContent = '';
+          <div class="step" data-step="4">
+            <h3>4️⃣ Coleta de evidências</h3>
+            <div class="meta">
+              <p><strong>Status:</strong> Parcial ✅</p>
+              <p>Evidências já coletadas: imagens de referência do hotel, Peugeot vermelho e CEASA. Mensagens da operadora ainda serão incluídas.</p>
+            </div>
+          </div>
 
-      if (!('geolocation' in navigator)) {
-        status.textContent = 'Navegador não suporta Geolocation API.';
-        return;
-      }
-
-      // Pede a posição apenas ao clicar
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          const acc = position.coords.accuracy; // metros
-          const time = new Date(position.timestamp).toLocaleString();
-
-          status.textContent = 'Localização obtida com sucesso.';
-          coordsBox.style.display = 'block';
-          coordsBox.innerHTML = `
-            Latitude: ${lat}<br>
-            Longitude: ${lon}<br>
-            Precisão: ~${Math.round(acc)} m<br>
-            Hora: ${time}
-            <br><br>
-            <a id="openMap" href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a>
-            &nbsp;|&nbsp;
-            <a id="openOsm" href="https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=18/${lat}/${lon}" target="_blank" rel="noopener noreferrer">Abrir no OSM</a>
-          `;
-        },
-        (err) => {
-          switch(err.code) {
-            case err.PERMISSION_DENIED:
-              status.textContent = 'Permissão negada pelo usuário.';
-              break;
-            case err.POSITION_UNAVAILABLE:
-              status.textContent = 'Localização indisponível.';
-              break;
-            case err.TIMEOUT:
-              status.textContent = 'Tempo esgotado ao obter localização.';
-              break;
-            default:
-              status.textContent = 'Erro ao obter localização: ' + err.message;
-          }
-        },
-        geoOptions
-      );
-    });
-  </script>
-</body>
-</html>
+          <div class="step" data-step="5">
+            <h3>5️⃣ Relatório final</h3>
+            <div class="meta">
+              <p><strong>Status:</strong> Atualizando 🔄</p>
+              <p>Resumo e conclusões da investigação. Será disponibilizado ao final do processo.</
+::contentReference[oaicite:3]{index=3}
+ 
