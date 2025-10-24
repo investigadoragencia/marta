@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Caso Marta – Painel Investigativo</title>
+<title>Caso Marta – Painel</title>
 <style>
 :root{
-  --bg:#0f1724; --panel:#0b1220; --accent:#00d4b4; --muted:#98a8b6; --text:#e6eef8; --glass:rgba(255,255,255,0.03);
+  --bg:#071022; --panel:#0b1220; --accent:#00d4b4; --muted:#98a8b6; --text:#e6eef8; --glass:rgba(255,255,255,0.03);
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -48,81 +48,137 @@ body{
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="header">
-    <div class="brand">
-      <h1>Agência Investigador</h1>
-      <p>Painel — Caso Marta</p>
-    </div>
-    <div style="display:flex;gap:8px">
-      <button id="btnLogout" class="btn secondary" style="padding:8px 10px">Sair</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <!-- quick highlights -->
-    <div class="quick">
-      <button id="openTimeline"><strong>🕵️ Etapas</strong><span style="font-size:12px;color:var(--muted)">Timeline interativa</span></button>
-      <button id="openGallery"><strong>📸 Evidências</strong><span style="font-size:12px;color:var(--muted)">Fotos & documentos</span></button>
-      <button id="openContract"><strong>🖋️ Contrato</strong><span style="font-size:12px;color:var(--muted)">Assinar autorização</span></button>
-      <button id="btnConfig" class="secondary"><strong>⚙️ </strong><span style="font-size:12px;color:var(--muted)">Configurações</span></button>
-    </div>
-
-    <!-- timeline -->
-    <div class="section">
-      <div class="section-title"><h2 style="color:var(--accent);margin:0">Linha do Tempo</h2></div>
-      <div class="stack" id="steps">
-        <div class="step" data-step="1">
-          <h3>1️⃣ Coleta de informações iniciais</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Concluído ✅</p>
-            <p>Informações fornecidas pela cliente Marta, incluindo comportamento suspeito do marido, horários, veículos e contatos disponíveis.</p>
-          </div>
-        </div>
-        <div class="step" data-step="2">
-          <h3>2️⃣ Investigação online</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Atualizando 🔄</p>
-            <p>Verificação de atividades digitais e redes sociais. Até o momento, não foi encontrada evidência plausível.</p>
-          </div>
-        </div>
-        <div class="step" data-step="3">
-          <h3>3️⃣ Investigação de campo</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Em andamento 🔄</p>
-            <p>Vigilância presencial nos locais e horários indicados, como hotel e CEASA, para coleta de provas.</p>
-          </div>
-        </div>
-        <div class="step" data-step="4">
-          <h3>4️⃣ Coleta de evidências</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Parcial ✅</p>
-            <p>Evidências já coletadas: imagens de referência do hotel, Peugeot vermelho, CEASA, câmeras de operação e painel.</p>
-          </div>
-        </div>
-        <div class="step" data-step="5">
-          <h3>5️⃣ Relatório final</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Atualizando 🔄</p>
-            <p>Resumo e conclusões da investigação. Será disponibilizado ao final do processo.</p>
-          </div>
-        </div>
-        <div class="step" data-step="6">
-          <h3>6️⃣ Contrato / Autorização</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Incluído ✅</p>
-            <p>Contrato de autorização de investigação confidencial. Cliente pode assinar diretamente no painel.</p>
-          </div>
-        </div>
+  <div class="wrap">
+    <div class="header">
+      <div class="brand">
+        <h1>Agência Investigador</h1>
+        <p>Painel — Caso Marta</p>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button id="btnLogout" class="btn secondary" style="padding:8px 10px">Sair</button>
       </div>
     </div>
 
-    <!-- gallery -->
-    <div class="section">
-      <div class="section-title"><h2 style="color:var(--accent);margin:0">Evidências Visuais</h2></div>
-      <div class="gallery" id="gallery">
-        <div class="thumb"><img src="hotel-sallu.jpg" alt="Hotel Sallu"><p>Hotel Sallu — fachada</p></div>
-        <div class="thumb"><img src="peugeot-vermelho.jpg" alt="Peugeot vermelho"><p>Peugeot vermelho — referência</p></div>
-        <div class="thumb"><img src="ceasa.jpg" alt="CEASA"><p>CEASA — local de possível deslocamento</p></div>
-        <div class="thumb"><img src="reconhecimento.jpg" alt="Reconhecimento facial"><p>Reconhecimento facial — simulação</p></div>
-        <div class="thumb"><img src="câmera1.jpg" alt="Câmera 1"><p>Câmera 1 — vigilância</p
+    <div class="card">
+      <!-- quick highlights -->
+      <div class="quick">
+        <button id="openTimeline">
+          <strong>🕵️ Etapas</strong>
+          <span style="font-size:12px;color:var(--muted)">Timeline interativa</span>
+        </button>
+        <button id="openGallery">
+          <strong>📸 Evidências</strong>
+          <span style="font-size:12px;color:var(--muted)">Fotos & documentos</span>
+        </button>
+        <button id="openContract">
+          <strong>🖋️ Contrato</strong>
+          <span style="font-size:12px;color:var(--muted)">Assinar autorização</span>
+        </button>
+      </div>
+
+      <!-- timeline -->
+      <div class="section">
+        <div class="section-title"><h2 style="color:var(--accent);margin:0">Linha do Tempo</h2></div>
+        <div class="stack" id="steps">
+          <div class="step" data-step="1">
+            <h3>1️⃣ Coleta de informações iniciais</h3>
+            <div class="meta">
+              <p><strong>Status:</strong> Concluído ✅</p>
+              <p>Informações fornecidas pela cliente Marta, incluindo comportamento suspeito do marido, horários, veículos e contatos disponíveis.</p>
+            </div>
+          </div>
+          <div class="step" data-step="2">
+            <h3>2️⃣ Investigação online</h3>
+            <div class="meta">
+              <p><strong>Status:</strong> Atualizando 🔄</p>
+              <p>Verificação de atividades digitais e redes sociais. Até o momento, não foi encontrada evidência plausível.</p>
+            </div>
+          </div>
+          <div class="step" data-step="3">
+            <h3>3️⃣ Investigação de campo</h3>
+            <div class="meta">
+              <p><strong>Status:</strong> Em andamento 🔄</p>
+              <p>Vigilância presencial nos locais e horários indicados, como hotel e CEASA, para coleta de provas.</p>
+            </div>
+          </div>
+          <div class="step" data-step="4">
+            <h3>4️⃣ Coleta de evidências</h3>
+            <div class="meta">
+              <p><strong>Status:</strong> Parcial ✅</p>
+              <p>Evidências já coletadas: imagens de referência do hotel, Peugeot vermelho, centro de operações e mapa. Mensagens da operadora ainda serão incluídas.</p>
+            </div>
+          </div>
+          <div class="step" data-step="5">
+            <h3>5️⃣ Relatório final</h3>
+            <div class="meta">
+              <p><strong>Status:</strong> Atualizando 🔄</p>
+              <p>Resumo e conclusões da investigação. Será disponibilizado ao final do processo.</p>
+            </div>
+          </div>
+          <div class="step" data-step="6">
+            <h3>6️⃣ Contrato / Autorização</h3>
+            <div class="meta">
+              <p><strong>Status:</strong> Incluído ✅</p>
+              <p>Contrato de autorização de investigação confidencial. Cliente pode assinar diretamente no painel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- gallery -->
+      <div class="section">
+        <div class="section-title"><h2 style="color:var(--accent);margin:0">Evidências Visuais</h2></div>
+        <div class="gallery" id="gallery">
+          <div class="thumb"><img src="hotel-sallu.jpg" alt="Hotel Sallu"><p>Hotel Sallu — fachada (referência)</p></div>
+          <div class="thumb"><img src="peugeot-vermelho.jpg" alt="Peugeot vermelho"><p>Peugeot vermelho — referência</p></div>
+          <div class="thumb"><img src="reconhecimento.jpg" alt="Reconhecimento facial"><p>Reconhecimento facial — simulação</p></div>
+          <div class="thumb"><img src="centro-de-operacoes.jpg" alt="Centro de Operações"><p>Centro de operações</p></div>
+          <div class="thumb"><img src="mapa.jpg" alt="Mapa"><p>Mapa de localização</p></div>
+        </div>
+      </div>
+
+      <!-- contract + signature preview -->
+      <div class="contract">
+        <h3 style="margin:0;color:var(--accent)">Contrato rápido</h3>
+        <p style="color:var(--muted);font-size:13px;margin-top:6px">Assine abaixo ou abra o contrato completo.</p>
+
+        <div class="signature-preview" id="sigPreview">
+          <!-- assinatura salva -->
+        </div>
+
+        <div class="controls">
+          <button id="openContractBtn" class="btn">Abrir Contrato</button>
+          <button id="downloadSig" class="btn secondary">Baixar Assinatura</button>
+        </div>
+      </div>
+
+      <div class="footer">Agência Investigador © 2025</div>
+    </div>
+  </div>
+
+<script>
+/* Interações */
+document.querySelectorAll('.step').forEach(s=>{
+  s.addEventListener('click',()=>{
+    const open = s.classList.contains('open');
+    document.querySelectorAll('.step').forEach(x=>{ x.classList.remove('open'); x.querySelector('.meta').style.display='none'; });
+    if(!open){ s.classList.add('open'); s.querySelector('.meta').style.display='block'; }
+  });
+});
+document.getElementById('openTimeline').addEventListener('click',()=> { window.scrollTo({top:0,behavior:'smooth'}); });
+document.getElementById('openGallery').addEventListener('click',()=> { const el=document.getElementById('gallery'); el.scrollIntoView({behavior:'smooth'}); });
+document.getElementById('openContract').addEventListener('click',()=> { window.location.href='contrato.html'; });
+document.getElementById('openContractBtn').addEventListener('click',()=> window.location.href='contrato.html');
+document.getElementById('btnLogout').addEventListener('click',()=> { location.href='index.html'; });
+
+// assinatura preview
+function showSavedSignature(){
+  const data = localStorage.getItem('assinatura_marta');
+  const preview = document.getElementById('sigPreview');
+  preview.innerHTML = '';
+  if(data){ const img = document.createElement('img'); img.src=data; img.alt='Assinatura salva'; preview.appendChild(img);}
+  else { preview.innerHTML = '<p style="color:'+getComputedStyle(document.documentElement).getPropertyValue('--muted')+';font-size:13px;margin:6px 0">Nenhuma assinatura salva</p>'; }
+}
+showSavedSignature();
+document.getElementById('downloadSig').addEventListener('click',()=>{
+  const data = localStorage.getItem('assinatura
