@@ -38,14 +38,19 @@ body{
 .thumb img{width:100%;height:92px;object-fit:cover;display:block}
 .thumb p{margin:8px;color:var(--muted);font-size:12px}
 .contract{margin-top:12px;background:var(--panel);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
-.canvas-mini{width:100%;height:120px;border-radius:8px;border:1px dashed rgba(255,255,255,0.06);background:var(--glass);margin-top:8px}
 .controls{display:flex;gap:8px;margin-top:10px}
 .btn{flex:1;padding:10px;border-radius:10px;border:0;background:var(--accent);color:#021018;font-weight:700;cursor:pointer}
 .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
 .signature-preview{margin-top:10px;border-radius:8px;overflow:hidden}
 .signature-preview img{width:100%;display:block}
 .footer{margin-top:12px;text-align:center;color:var(--muted);font-size:12px}
-@media (max-width:420px){.thumb img{height:86px}}
+.locked{opacity:0.4;pointer-events:none;position:relative}
+.locked::after{
+  content:"🔒 Liberado após pagamento";
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,0.6);color:var(--accent);font-weight:600;font-size:13px;border-radius:12px;
+}
 </style>
 </head>
 <body>
@@ -55,29 +60,26 @@ body{
       <h1>Agência Investigador</h1>
       <p>Painel — Caso Marta</p>
     </div>
-    <div style="display:flex;gap:8px">
-      <button id="btnLogout" class="btn secondary" style="padding:8px 10px">Sair</button>
-    </div>
+    <button id="btnLogout" class="btn secondary" style="padding:8px 10px">Sair</button>
   </div>
 
   <div class="card">
-    <!-- quick highlights -->
+    <!-- quick access -->
     <div class="quick">
       <button id="openTimeline">
-        <strong>🕵️ Etapas</strong>
-        <span style="font-size:12px;color:var(--muted)">Timeline interativa</span>
+        <strong>🕵️ Etapas</strong><span>Timeline interativa</span>
       </button>
-      <button id="openGallery">
-        <strong>📸 Evidências</strong>
-        <span style="font-size:12px;color:var(--muted)">Fotos & documentos</span>
+      <button id="openGallery" class="disabled">
+        <strong>📸 Evidências</strong><span>🔒 Bloqueado</span>
+      </button>
+      <button id="openMessages" class="disabled">
+        <strong>💬 Mensagens</strong><span>🔒 Bloqueado</span>
+      </button>
+      <button id="openSocial" class="disabled">
+        <strong>🌐 Redes Sociais</strong><span>🔒 Bloqueado</span>
       </button>
       <button id="openContract">
-        <strong>🖋️ Contrato</strong>
-        <span style="font-size:12px;color:var(--muted)">Assinar autorização</span>
-      </button>
-      <button id="openContacts" class="disabled">
-        <strong>📞 Contatos</strong>
-        <span style="font-size:12px;color:var(--muted)">Disponível após pagamento</span>
+        <strong>🖋️ Contrato</strong><span>Assinar autorização</span>
       </button>
     </div>
 
@@ -85,79 +87,44 @@ body{
     <div class="section">
       <div class="section-title"><h2 style="color:var(--accent);margin:0">Linha do Tempo</h2></div>
       <div class="stack" id="steps">
-        <div class="step" data-step="1">
-          <h3>1️⃣ Coleta de informações iniciais</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Atualizando 🔄</p>
-            <p>Informações fornecidas pela cliente Marta, incluindo comportamento suspeito do marido, horários, veículos e contatos disponíveis.</p>
-          </div>
-        </div>
-        <div class="step" data-step="2">
-          <h3>2️⃣ Investigação online</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Atualizando 🔄</p>
-            <p>Verificação de atividades digitais e redes sociais. Até o momento, não foi encontrada evidência plausível.</p>
-          </div>
-        </div>
-        <div class="step" data-step="3">
-          <h3>3️⃣ Investigação de campo</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Atualizando 🔄</p>
-            <p>Vigilância presencial nos locais e horários indicados.</p>
-          </div>
-        </div>
-        <div class="step" data-step="4">
-          <h3>4️⃣ Coleta de evidências</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Atualizando 🔄</p>
-            <p>Evidências já coletadas: Hotel Sallu, Peugeot vermelho, centro de operações e mapa. Mensagens da operadora ainda serão incluídas.</p>
-          </div>
-        </div>
-        <div class="step" data-step="5">
-          <h3>5️⃣ Relatório final</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Atualizando 🔄</p>
-            <p>Resumo e conclusões da investigação. Será disponibilizado ao final do processo.</p>
-          </div>
-        </div>
-        <div class="step" data-step="6">
-          <h3>6️⃣ Contrato / Autorização</h3>
-          <div class="meta">
-            <p><strong>Status:</strong> Incluído ✅</p>
-            <p>Contrato de autorização de investigação confidencial. Cliente pode assinar diretamente no painel.</p>
-          </div>
-        </div>
+        <div class="step"><h3>1️⃣ Coleta inicial</h3><div class="meta"><p>Status: Atualizando 🔄</p><p>Informações básicas sobre o caso Marta foram coletadas e cadastradas.</p></div></div>
+        <div class="step"><h3>2️⃣ Investigação online</h3><div class="meta"><p>Status: Atualizando 🔄</p><p>Rastreamento de perfis e comunicações digitais.</p></div></div>
+        <div class="step"><h3>3️⃣ Vigilância de campo</h3><div class="meta"><p>Status: Atualizando 🔄</p><p>Atuação em locais de interesse definidos pela cliente.</p></div></div>
+        <div class="step"><h3>4️⃣ Coleta de evidências</h3><div class="meta"><p>Status: 🔄</p><p>Hotel Sallu, Peugeot vermelho, reconhecimento facial, centro de operações, mapa e câmeras de trânsito incluídas.</p></div></div>
       </div>
     </div>
 
-    <!-- gallery -->
-    <div class="section">
+    <!-- evidências bloqueadas -->
+    <div class="section locked">
       <div class="section-title"><h2 style="color:var(--accent);margin:0">Evidências Visuais</h2></div>
-      <div class="gallery" id="gallery">
-        <div class="thumb"><img src="hotel-sallu.jpg" alt="Hotel Sallu"><p>Hotel Sallu — fachada (referência)</p></div>
-        <div class="thumb"><img src="peugeot-vermelho.jpg" alt="Peugeot vermelho"><p>Peugeot vermelho — referência</p></div>
-        <div class="thumb"><img src="reconhecimento.jpg" alt="Reconhecimento facial"><p>Reconhecimento facial — simulação</p></div>
-        <div class="thumb"><img src="centro-de-operacoes.jpg" alt="Centro de Operações"><p>Centro de operações</p></div>
-        <div class="thumb"><img src="mapa.jpg" alt="Mapa"><p>Mapa de localização</p></div>
+      <div class="gallery">
+        <div class="thumb"><img src="hotel-sallu.jpg"><p>Hotel Sallu</p></div>
+        <div class="thumb"><img src="peugeot-vermelho.jpg"><p>Peugeot vermelho</p></div>
+        <div class="thumb"><img src="reconhecimento.jpg"><p>Reconhecimento facial</p></div>
+        <div class="thumb"><img src="centro-de-operacoes.jpg"><p>Centro de operações</p></div>
+        <div class="thumb"><img src="mapa.jpg"><p>Mapa</p></div>
+        <div class="thumb"><img src="camera1.jpg"><p>Câmeras de trânsito</p></div>
       </div>
     </div>
 
-    <!-- contacts placeholder -->
-    <div class="section" id="contactsSection">
-      <div class="section-title"><h2 style="color:var(--accent);margin:0">📞 Evidências de Contatos</h2></div>
-      <p style="color:var(--muted);font-size:13px;margin-top:6px;">Seção bloqueada. Liberada após pagamento.</p>
+    <!-- mensagens bloqueadas -->
+    <div class="section locked">
+      <div class="section-title"><h2 style="color:var(--accent);margin:0">💬 Mensagens</h2></div>
+      <p>Provas obtidas via comunicações (WhatsApp, SMS, etc.)</p>
     </div>
 
-    <!-- contract + signature preview -->
+    <!-- redes bloqueadas -->
+    <div class="section locked">
+      <div class="section-title"><h2 style="color:var(--accent);margin:0">🌐 Redes Sociais</h2></div>
+      <p>Monitoramento e cruzamento de perfis vinculados.</p>
+    </div>
+
+    <!-- contrato -->
     <div class="contract">
-      <h3 style="margin:0;color:var(--accent)">Contrato rápido</h3>
-      <p style="color:var(--muted);font-size:13px;margin-top:6px">Assine abaixo ou abra o contrato completo.</p>
-
-      <div class="signature-preview" id="sigPreview"></div>
-
+      <h3 style="margin:0;color:var(--accent)">Contrato / Autorização</h3>
+      <p style="color:var(--muted);font-size:13px;margin-top:6px">Clique abaixo para visualizar e assinar digitalmente.</p>
       <div class="controls">
         <button id="openContractBtn" class="btn">Abrir Contrato</button>
-        <button id="downloadSig" class="btn secondary">Baixar Assinatura</button>
       </div>
     </div>
 
@@ -166,23 +133,16 @@ body{
 </div>
 
 <script>
-/* Interações */
 document.querySelectorAll('.step').forEach(s=>{
   s.addEventListener('click',()=>{
-    const open = s.classList.contains('open');
-    document.querySelectorAll('.step').forEach(x=>{ x.classList.remove('open'); x.querySelector('.meta').style.display='none'; });
-    if(!open){ s.classList.add('open'); s.querySelector('.meta').style.display='block'; }
+    const open=s.classList.contains('open');
+    document.querySelectorAll('.step').forEach(x=>{x.classList.remove('open');x.querySelector('.meta').style.display='none';});
+    if(!open){s.classList.add('open');s.querySelector('.meta').style.display='block';}
   });
 });
-document.getElementById('openTimeline').addEventListener('click',()=> { window.scrollTo({top:0,behavior:'smooth'}); });
-document.getElementById('openGallery').addEventListener('click',()=> { document.getElementById('gallery').scrollIntoView({behavior:'smooth'}); });
-document.getElementById('openContract').addEventListener('click',()=> { window.location.href='contrato.html'; });
-document.getElementById('openContractBtn').addEventListener('click',()=> window.location.href='contrato.html');
-document.getElementById('btnLogout').addEventListener('click',()=> { location.href='index.html'; });
-
-// assinatura preview
-function showSavedSignature(){
-  const data = localStorage.getItem('assinatura_marta');
-  const preview = document.getElementById('sigPreview');
-  preview.innerHTML = '';
-  if
+document.getElementById('openContract').addEventListener('click',()=>{window.location.href='contrato.html';});
+document.getElementById('openContractBtn').addEventListener('click',()=>{window.location.href='contrato.html';});
+document.getElementById('btnLogout').addEventListener('click',()=>{location.href='index.html';});
+</script>
+</body>
+</html>
