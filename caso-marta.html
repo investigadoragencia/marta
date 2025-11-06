@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Atualizando seus dados — Investigador Agência</title>
+  <title>Acesso liberado — Agência Investigador</title>
   <style>
     :root {
-      --bg: #060d0a;
+      --bg: #040a07;
       --accent: #00ff7f;
-      --muted: #bfe8cf;
+      --text: #d7fce0;
       --mono: 'Courier New', monospace;
     }
     html,body {
       height: 100%;
       margin: 0;
       background: linear-gradient(180deg, #020403 0%, var(--bg) 100%);
+      color: var(--text);
       font-family: Inter, system-ui, sans-serif;
-      color: var(--muted);
       overflow: hidden;
     }
     .wrap {
@@ -47,16 +47,15 @@
       margin: 0 auto 1.5rem;
       line-height: 1.5;
     }
-    .spinner {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 4px solid rgba(255,255,255,0.08);
-      border-top-color: var(--accent);
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
+    .success {
+      font-size: 3rem;
+      color: var(--accent);
+      animation: pulse 1.2s ease-in-out infinite alternate;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse {
+      from { opacity: 0.5; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
     footer {
       position: absolute;
       bottom: 1rem;
@@ -68,18 +67,18 @@
 <body>
   <div class="wrap">
     <div class="logo">Agência Investigador</div>
-    <h1>Atualizando seus dados</h1>
-    <p>Estamos processando as informações mais recentes da sua conta e preparando o ambiente. Este processo pode levar alguns instantes.</p>
-    <div class="spinner" role="status" aria-label="Carregando"></div>
-    <p style="font-size:0.9rem;color:rgba(255,255,255,0.5)">Por favor, aguarde...</p>
+    <div class="success">✅</div>
+    <h1>Acesso liberado com sucesso</h1>
+    <p>Seus dados foram atualizados e o acesso foi restaurado. Em instantes, você será redirecionado para o painel principal do caso.</p>
+    <p style="font-size:0.9rem;color:rgba(255,255,255,0.5)">Redirecionando...</p>
   </div>
   <footer>Agência Investigador © 2025</footer>
 
   <script>
-    // Simula tempo de atualização e redireciona para a página principal
+    // Redireciona após 6 segundos para a página do caso
     setTimeout(function(){
       window.location.href = '/marta/caso-marta.html';
-    }, 8000);
+    }, 6000);
   </script>
 </body>
 </html>
