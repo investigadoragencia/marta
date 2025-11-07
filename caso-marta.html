@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<!-- meta que limita escala em navegadores móveis -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Agência Investigador - Caso Marta</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+    html, body {
+        height: 100%;
+        -ms-touch-action: pan-x pan-y;
+        touch-action: pan-x pan-y; /* ajuda a prevenir pinch em alguns browsers */
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        margin: 0;
+    }
     body {
         font-family: 'Inter', sans-serif;
         margin: 0;
@@ -257,5 +268,58 @@
         </div>
     </div>
 </div>
+
+<script>
+/*
+  TENTATIVAS PARA BLOQUEAR ZOOM:
+  1) meta viewport com maximum-scale=1, user-scalable=no (afeta navegadores móveis)
+  2) prevenir gesturestart (iOS Safari)
+  3) bloquear duplo-toque (double-tap)
+  4) interceptar wheel+ctrl/meta (Chrome/Firefox) e teclas ctrl/cmd + +/- / 0
+  Nota: nada disso é 100% — usuários ainda podem usar menus do browser ou ferramentas do SO.
+*/
+
+/* 1) prevenir gesturestart (iOS) */
+document.addEventListener('gesturestart', function (e) {
+  e.preventDefault();
+}, { passive: false });
+
+/* 2) bloquear duplo-toque (double tap) para zoom — detecta toques muito próximos */
+let lastTouch = 0;
+document.addEventListener('touchend', function (e) {
+  const now = Date.now();
+  if (now - lastTouch <= 300) {
+    e.preventDefault();
+  }
+  lastTouch = now;
+}, { passive: false });
+
+/* 3) prevenir Ctrl/Cmd + roda do mouse (zoom) */
+window.addEventListener('wheel', function (e) {
+  if (e.ctrlKey || e.metaKey) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+/* 4) prevenir teclas de zoom (Ctrl/Cmd + +, -, 0, =) */
+window.addEventListener('keydown', function (e) {
+  const isCtrl = e.ctrlKey || e.metaKey;
+  if (!isCtrl) return;
+  // teclas mais comuns para zoom: + (shift+='='), '-' , '0', '='
+  if (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0') {
+    e.preventDefault();
+  }
+});
+
+/* 5) bloquear execução via touchmove de gestos de escala (alguns browsers expõem event.scale) */
+document.addEventListener('touchmove', function(e) {
+  // Alguns navegadores podem expor e.scale em gesture events; aqui segura defaults se achar sinais de escala
+  if (e.scale && e.scale !== 1) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+/* 6) botão/links ainda funcionam normalmente; se quiser permitir seleção de texto em campos, remova/ajuste user-select */
+</script>
 </body>
 </html>
