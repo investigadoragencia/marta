@@ -4,25 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Caso Marta</title>
+  <title>Manutenção — Agência Investigador</title>
   <style>
-    body {
-      font-family: Inter, system-ui, sans-serif;
-      background-color: #f4f4f4;
-      color: #111;
+    :root {
+      --bg: #040407;
+      --accent: #1e90ff;
+      --text: #d7e8ff;
+      --mono: 'Courier New', monospace;
+    }
+    html,body {
+      height: 100%;
       margin: 0;
-      padding: 2rem;
+      background: linear-gradient(180deg, #020203 0%, var(--bg) 100%);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
-    h1 { 
-      color: #333; 
+    .container {
+      max-width: 500px;
     }
-    p { 
-      line-height: 1.5; 
+    .logo {
+      font-family: var(--mono);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #c5e0ff;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(30,144,255,0.1);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: rgba(200,230,255,0.15);
     }
   </style>
 </head>
 <body>
-  <h1>Caso Marta</h1>
-  <p>Esta é a página original do caso Marta, com informações do caso antes de qualquer modificação.</p>
+  <div class="container">
+    <div class="logo">Agência Investigador</div>
+    <h1>Site em Manutenção</h1>
+    <p>Estamos realizando atualizações importantes. Por favor, volte em alguns minutos.</p>
+    <div class="spinner"></div>
+    <footer>Agência Investigador © 2025</footer>
+  </div>
 </body>
 </html>
