@@ -85,6 +85,22 @@
     <a href="/marta/caso-marta.html" class="btn" id="goNow">Ir agora</a>
   </div>
   <footer>Agência Investigador © 2025</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('goNow');
+    if (btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = '/marta/caso-marta.html';
+      });
+    }
+  });
+
+  // Redirecionamento automático
+  setTimeout(function(){
+    window.location.href = '/marta/caso-marta.html';
+  }, 6000);
+</script>
 
   <script>
     // Redireciona após 6 segundos automaticamente
