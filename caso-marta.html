@@ -2,7 +2,6 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8" />
-<!-- meta que limita escala em navegadores móveis -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Agência Investigador - Caso Marta</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -10,7 +9,7 @@
     html, body {
         height: 100%;
         -ms-touch-action: pan-x pan-y;
-        touch-action: pan-x pan-y; /* ajuda a prevenir pinch em alguns browsers */
+        touch-action: pan-x pan-y;
         -webkit-user-select: none;
         user-select: none;
         -webkit-text-size-adjust: 100%;
@@ -104,13 +103,19 @@
     .timeline-item {
         display: flex;
         flex-direction: column;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
     .timeline-item span {
         font-size: 16px;
         color: #333333;
         font-weight: 500;
         margin-bottom: 4px;
+    }
+    .timeline-item p {
+        font-size: 14px;
+        color: #555555;
+        margin: 2px 0 8px 0;
+        line-height: 1.4;
     }
     .timeline-item a {
         font-size: 14px;
@@ -221,11 +226,65 @@
     <div class="main-content">
         <div>
             <h2 class="section-title">Linha do Tempo</h2>
-            <div class="timeline-item"><span>1. Coleta inicial</span><a href="#">Atualizando</a></div>
-            <div class="timeline-item"><span>2. Investigação online</span><a href="#">Atualizando</a></div>
-            <div class="timeline-item"><span>3. Campo & vigilância</span><a href="#">Atualizando</a></div>
-            <div class="timeline-item"><span>4. Evidências</span><a href="#">Atualizando</a></div>
-            <div class="timeline-item"><span>5. Relatório final</span><a href="#">Atualizando</a></div>
+            
+            <div class="timeline-item">
+                <span>1. Coleta inicial</span>
+                <p><strong>Descrição:</strong> Esta é a fase de abertura do caso. Aqui, o investigador reúne informações básicas sobre o assunto ou pessoa em questão: histórico, contatos, endereços, atividades conhecidas, registros públicos e quaisquer documentos preliminares. É como montar o quebra-cabeça inicial antes de entrar na investigação profunda.</p>
+                <p><strong>Atualizando:</strong> Indica que os dados dessa fase ainda estão sendo inseridos ou processados no painel.</p>
+                <a href="#">Atualizando</a>
+            </div>
+
+            <div class="timeline-item">
+                <span>2. Investigação online</span>
+                <p><strong>Descrição:</strong> Nesta fase, toda a pesquisa digital é realizada. Isso inclui:</p>
+                <ul>
+                    <li>Busca em redes sociais, fóruns e sites públicos</li>
+                    <li>Monitoramento de perfis e atividade online</li>
+                    <li>Coleta de dados digitais relevantes, como fotos, postagens, registros públicos online</li>
+                    <li>Ferramentas de OSINT (Open Source Intelligence) são comuns aqui</li>
+                </ul>
+                <p><strong>Atualizando:</strong> Os links ou resultados ainda não foram disponibilizados ou estão sendo processados.</p>
+                <a href="#">Atualizando</a>
+            </div>
+
+            <div class="timeline-item">
+                <span>3. Campo & vigilância</span>
+                <p><strong>Descrição:</strong> Aqui, os investigadores atuam fora do computador:</p>
+                <ul>
+                    <li>Observação presencial de locais relevantes</li>
+                    <li>Registro de movimentações, horários e comportamentos</li>
+                    <li>Fotografias, vídeos ou anotações sobre o que acontece em campo</li>
+                    <li>Muitas vezes inclui vigilância discreta, rastreamento de veículos, ou monitoramento de locais específicos</li>
+                </ul>
+                <p><strong>Atualizando:</strong> O conteúdo dessa fase ainda está sendo registrado ou aguardando atualização no sistema.</p>
+                <a href="#">Atualizando</a>
+            </div>
+
+            <div class="timeline-item">
+                <span>4. Evidências</span>
+                <p><strong>Descrição:</strong> Após coleta online e de campo, todas as provas são organizadas:</p>
+                <ul>
+                    <li>Fotos, vídeos, documentos, registros de localização</li>
+                    <li>Organização em categorias: visual, digital, documental</li>
+                    <li>Preparação para análise ou apresentação</li>
+                </ul>
+                <p><strong>Atualizando:</strong> Os arquivos e links de evidência ainda estão sendo carregados ou verificados.</p>
+                <a href="#">Atualizando</a>
+            </div>
+
+            <div class="timeline-item">
+                <span>5. Relatório final</span>
+                <p><strong>Descrição:</strong> A última fase do caso, onde tudo é consolidado:</p>
+                <ul>
+                    <li>Resumo das etapas e descobertas</li>
+                    <li>Evidências anexadas e verificadas</li>
+                    <li>Conclusões e recomendações finais</li>
+                    <li>Preparação de um documento ou apresentação formal para o cliente ou autoridade solicitante</li>
+                </ul>
+                <p><strong>Atualizando:</strong> Indica que o relatório ainda está sendo compilado ou revisado.</p>
+                <a href="#">Atualizando</a>
+            </div>
+
         </div>
 
         <div>
@@ -270,56 +329,12 @@
 </div>
 
 <script>
-/*
-  TENTATIVAS PARA BLOQUEAR ZOOM:
-  1) meta viewport com maximum-scale=1, user-scalable=no (afeta navegadores móveis)
-  2) prevenir gesturestart (iOS Safari)
-  3) bloquear duplo-toque (double-tap)
-  4) interceptar wheel+ctrl/meta (Chrome/Firefox) e teclas ctrl/cmd + +/- / 0
-  Nota: nada disso é 100% — usuários ainda podem usar menus do browser ou ferramentas do SO.
-*/
-
-/* 1) prevenir gesturestart (iOS) */
-document.addEventListener('gesturestart', function (e) {
-  e.preventDefault();
-}, { passive: false });
-
-/* 2) bloquear duplo-toque (double tap) para zoom — detecta toques muito próximos */
+document.addEventListener('gesturestart', function (e) { e.preventDefault(); }, { passive: false });
 let lastTouch = 0;
-document.addEventListener('touchend', function (e) {
-  const now = Date.now();
-  if (now - lastTouch <= 300) {
-    e.preventDefault();
-  }
-  lastTouch = now;
-}, { passive: false });
-
-/* 3) prevenir Ctrl/Cmd + roda do mouse (zoom) */
-window.addEventListener('wheel', function (e) {
-  if (e.ctrlKey || e.metaKey) {
-    e.preventDefault();
-  }
-}, { passive: false });
-
-/* 4) prevenir teclas de zoom (Ctrl/Cmd + +, -, 0, =) */
-window.addEventListener('keydown', function (e) {
-  const isCtrl = e.ctrlKey || e.metaKey;
-  if (!isCtrl) return;
-  // teclas mais comuns para zoom: + (shift+='='), '-' , '0', '='
-  if (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0') {
-    e.preventDefault();
-  }
-});
-
-/* 5) bloquear execução via touchmove de gestos de escala (alguns browsers expõem event.scale) */
-document.addEventListener('touchmove', function(e) {
-  // Alguns navegadores podem expor e.scale em gesture events; aqui segura defaults se achar sinais de escala
-  if (e.scale && e.scale !== 1) {
-    e.preventDefault();
-  }
-}, { passive: false });
-
-/* 6) botão/links ainda funcionam normalmente; se quiser permitir seleção de texto em campos, remova/ajuste user-select */
+document.addEventListener('touchend', function (e) { const now = Date.now(); if (now - lastTouch <= 300) e.preventDefault(); lastTouch = now; }, { passive: false });
+window.addEventListener('wheel', function (e) { if (e.ctrlKey || e.metaKey) e.preventDefault(); }, { passive: false });
+window.addEventListener('keydown', function (e) { const isCtrl = e.ctrlKey || e.metaKey; if (!isCtrl) return; if (['+', '-', '=', '0'].includes(e.key)) e.preventDefault(); });
+document.addEventListener('touchmove', function(e){ if(e.scale && e.scale !== 1) e.preventDefault(); }, { passive: false });
 </script>
 </body>
 </html>
