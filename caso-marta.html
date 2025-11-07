@@ -8,8 +8,8 @@
   <style>
     :root {
       --bg: #040a07;
-      --accent: #00ff7f;
-      --text: #d7fce0;
+      --accent: #1e90ff; /* azul */
+      --text: #d7e8ff;
       --mono: 'Courier New', monospace;
     }
     html,body {
@@ -42,7 +42,7 @@
       color: var(--accent);
     }
     p {
-      color: #c5f0da;
+      color: #c5e0ff;
       max-width: 480px;
       margin: 0 auto 1.5rem;
       line-height: 1.5;
@@ -56,11 +56,22 @@
       from { opacity: 0.5; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
+    a.btn {
+      display: inline-block;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(30,144,255,0.06), rgba(30,144,255,0.02));
+      border: 1px solid rgba(30,144,255,0.12);
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
     footer {
       position: absolute;
       bottom: 1rem;
       font-size: 0.85rem;
-      color: rgba(200,255,220,0.15);
+      color: rgba(200,230,255,0.15);
     }
   </style>
 </head>
@@ -71,14 +82,21 @@
     <h1>Acesso liberado com sucesso</h1>
     <p>Seus dados foram atualizados e o acesso foi restaurado. Em instantes, você será redirecionado para o painel principal do caso.</p>
     <p style="font-size:0.9rem;color:rgba(255,255,255,0.5)">Redirecionando...</p>
+    <a href="/marta/caso-marta.html" class="btn" id="goNow">Ir agora</a>
   </div>
   <footer>Agência Investigador © 2025</footer>
 
   <script>
-    // Redireciona após 6 segundos para a página do caso
+    // Redireciona após 6 segundos automaticamente
     setTimeout(function(){
       window.location.href = '/marta/caso-marta.html';
     }, 6000);
+
+    // Botão manual
+    document.getElementById('goNow').addEventListener('click', function(e){
+      e.preventDefault();
+      window.location.href = '/marta/caso-marta.html';
+    });
   </script>
 </body>
 </html>
